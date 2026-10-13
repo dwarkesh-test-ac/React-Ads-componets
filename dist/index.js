@@ -3099,7 +3099,6 @@ function AutoAdRunner({ children, Code, skipTime, waiting }) {
   const [cundown, setCundown] = useState("");
   const [adlink, setAdlink] = useState("");
   const [targetlink, settargetlink] = useState("");
-  const [resetskip, setresetskip] = useState(0);
   const [inactiveter, setinactiveter] = useState(0);
   const timerRef = useRef(null);
   const inactivity_time = waiting;
@@ -3155,7 +3154,9 @@ function AutoAdRunner({ children, Code, skipTime, waiting }) {
     if (showOverlay && inactiveter === 0) {
       const fetchData = async () => {
         try {
-          let result = await axios_default.get(`https://ad-services.vercel.app/api/ad/fetch-ad?url=https://jsonplaceholder.typicode.com/posts&apiKey=${Code}&limit=1`);
+          let result = await axios_default.get(
+            `https://ad-services.vercel.app/api/ad/fetch-ad?url=https://jsonplaceholder.typicode.com/posts&apiKey=${Code}&limit=1`
+          );
           setAdlink(result.data.ad_link);
           settargetlink(result.data.target_link);
           setinactiveter(1);
@@ -3175,10 +3176,8 @@ function AutoAdRunner({ children, Code, skipTime, waiting }) {
       window.location.href = targetlink;
     }
   };
-  const styles2 = {
-    appContainer: {
-      position: "relative"
-    },
+  const styles22 = {
+    appContainer: { position: "relative" },
     overlayBackdrop: {
       position: "fixed",
       top: 0,
@@ -3219,11 +3218,7 @@ function AutoAdRunner({ children, Code, skipTime, waiting }) {
       fontWeight: "600",
       cursor: "pointer"
     },
-    headerControls: {
-      display: "flex",
-      alignItems: "center",
-      gap: "12px"
-    },
+    headerControls: { display: "flex", alignItems: "center", gap: "12px" },
     countdownBadge: {
       padding: "4px 12px",
       borderRadius: "9999px",
@@ -3252,10 +3247,7 @@ function AutoAdRunner({ children, Code, skipTime, waiting }) {
       alignItems: "center",
       justifyContent: "center"
     },
-    closeButtonHover: {
-      backgroundColor: "#fef2f2",
-      color: "#dc2626"
-    },
+    closeButtonHover: { backgroundColor: "#fef2f2", color: "#dc2626" },
     mediaContainer: {
       width: "100%",
       backgroundColor: "black",
@@ -3297,302 +3289,141 @@ function AutoAdRunner({ children, Code, skipTime, waiting }) {
       backdropFilter: "blur(4px)",
       borderTop: "1px solid rgba(0, 0, 0, 0.05)"
     },
-    footerText: {
-      fontSize: "12px",
-      color: "#71717a"
-    }
+    footerText: { fontSize: "12px", color: "#71717a" }
   };
   const [closeButtonHovered, setCloseButtonHovered] = useState(false);
   return /* @__PURE__ */ React.createElement(React.Fragment, null, /* @__PURE__ */ React.createElement("style", null, `
-                @media (min-width: 768px) {
-                    .media-container-responsive {
-                        height: 75vh !important;
-                    }
-                }
-                @media (min-width: 1024px) {
-                    .media-container-responsive {
-                        height: 85vh !important;
-                    }
-                }
-                @media (min-width: 1280px) {
-                    .media-container-responsive {
-                        height: 88vh !important;
-                    }
-                }
-            `), /* @__PURE__ */ React.createElement("div", { style: styles2.appContainer }, children, showOverlay && /* @__PURE__ */ React.createElement(
+        @media (min-width: 768px) {
+            .media-container-responsive { height: 75vh !important; }
+        }
+        @media (min-width: 1024px) {
+            .media-container-responsive { height: 85vh !important; }
+        }
+        @media (min-width: 1280px) {
+            .media-container-responsive { height: 88vh !important; }
+        }
+      `), /* @__PURE__ */ React.createElement("div", { style: styles22.appContainer }, children, showOverlay && /* @__PURE__ */ React.createElement("div", { style: styles22.overlayBackdrop, onClick: redirectto }, /* @__PURE__ */ React.createElement("div", { style: styles22.overlayModal, onClick: (e) => e.stopPropagation() }, /* @__PURE__ */ React.createElement("div", { style: styles22.modalHeader }, /* @__PURE__ */ React.createElement("div", { style: styles22.headerTitle, onClick: redirectto }, "Ad run by POC Digital"), /* @__PURE__ */ React.createElement("div", { style: styles22.headerControls }, timesing && /* @__PURE__ */ React.createElement("div", { style: styles22.countdownBadge }, cundown), cross && /* @__PURE__ */ React.createElement(
+    "button",
+    {
+      type: "button",
+      onClick: closeOverlay,
+      style: {
+        ...styles22.closeButton,
+        ...closeButtonHovered ? styles22.closeButtonHover : {}
+      },
+      onMouseEnter: () => setCloseButtonHovered(true),
+      onMouseLeave: () => setCloseButtonHovered(false),
+      "aria-label": "Close"
+    },
+    "\xD7"
+  ))), /* @__PURE__ */ React.createElement(
     "div",
     {
-      style: styles2.overlayBackdrop,
-      onClick: redirectto
+      style: styles22.mediaContainer,
+      className: "media-container-responsive"
     },
-    /* @__PURE__ */ React.createElement(
-      "div",
+    /* @__PURE__ */ React.createElement("div", { style: styles22.clickableOverlay, onClick: redirectto }),
+    /\.(jpe?g|png|gif|webp|avif|svg)$/i.test(adlink) ? /* @__PURE__ */ React.createElement(
+      "img",
       {
-        style: styles2.overlayModal,
-        onClick: (e) => e.stopPropagation()
-      },
-      /* @__PURE__ */ React.createElement("div", { style: styles2.modalHeader }, /* @__PURE__ */ React.createElement("div", { style: styles2.headerTitle, onClick: redirectto }, "Ad run by Dwarkesh & team"), /* @__PURE__ */ React.createElement("div", { style: styles2.headerControls }, timesing && /* @__PURE__ */ React.createElement("div", { style: styles2.countdownBadge }, cundown), cross && /* @__PURE__ */ React.createElement(
-        "button",
-        {
-          type: "button",
-          onClick: closeOverlay,
-          style: {
-            ...styles2.closeButton,
-            ...closeButtonHovered ? styles2.closeButtonHover : {}
-          },
-          onMouseEnter: () => setCloseButtonHovered(true),
-          onMouseLeave: () => setCloseButtonHovered(false),
-          "aria-label": "Close"
-        },
-        "\xD7"
-      ))),
-      /* @__PURE__ */ React.createElement("div", { style: styles2.mediaContainer, className: "media-container-responsive" }, /* @__PURE__ */ React.createElement("div", { style: styles2.clickableOverlay, onClick: redirectto }), /\.(jpe?g|png|gif|webp|avif|svg)$/i.test(adlink) ? /* @__PURE__ */ React.createElement(
-        "img",
-        {
-          src: adlink,
-          alt: "Ad",
-          style: styles2.adImage,
-          draggable: false
-        }
-      ) : /* @__PURE__ */ React.createElement(
-        "iframe",
-        {
-          style: styles2.adIframe,
-          src: adlink,
-          title: "Ad",
-          allow: "autoplay; fullscreen"
-        }
-      )),
-      /* @__PURE__ */ React.createElement("div", { style: styles2.modalFooter }, /* @__PURE__ */ React.createElement("div", { style: styles2.footerText }, "Sponsored"), /* @__PURE__ */ React.createElement("div", { style: styles2.footerText }, "Click anywhere to continue"))
+        src: adlink,
+        alt: "Ad",
+        style: styles22.adImage,
+        draggable: false
+      }
+    ) : /* @__PURE__ */ React.createElement(
+      "iframe",
+      {
+        style: styles22.adIframe,
+        src: adlink,
+        title: "Ad",
+        allow: "autoplay; fullscreen"
+      }
     )
-  )));
+  ), /* @__PURE__ */ React.createElement("div", { style: styles22.modalFooter }, /* @__PURE__ */ React.createElement("div", { style: styles22.footerText }, "Sponsored"), /* @__PURE__ */ React.createElement("div", { style: styles22.footerText }, "Click anywhere to continue"))))));
 }
 
 // src/Ad_click_running_component.jsx
-import React, { useState as useState2, useEffect as useEffect2, useRef as useRef2 } from "react";
+import React2, { useState as useState2, useEffect as useEffect2 } from "react";
 var styles = `
-  .click-ad-runner-trigger {
-    cursor: pointer;
-  }
-
+  .click-ad-runner-trigger { cursor: pointer; }
   .click-ad-runner-backdrop {
-    position: fixed;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    z-index: 50;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: rgba(0, 0, 0, 0.7);
-    backdrop-filter: blur(4px);
+    position: fixed; top: 0; right: 0; bottom: 0; left: 0;
+    z-index: 50; display: flex; align-items: center; justify-content: center;
+    background-color: rgba(0, 0, 0, 0.7); backdrop-filter: blur(4px);
   }
-
   .click-ad-runner-modal {
-    position: relative;
-    width: 100%;
-    max-width: 48rem;
-    margin-left: 1rem;
-    margin-right: 1rem;
+    position: relative; width: 100%; max-width: 48rem;
+    margin-left: 1rem; margin-right: 1rem;
     background-color: rgba(255, 255, 255, 0.95);
-    border-radius: 1rem;
-    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
-    border: 1px solid rgba(0, 0, 0, 0.1);
-    overflow: hidden;
+    border-radius: 1rem; box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(0, 0, 0, 0.1); overflow: hidden;
   }
-
   .click-ad-runner-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding-left: 1.25rem;
-    padding-right: 1.25rem;
-    padding-top: 0.75rem;
-    padding-bottom: 0.75rem;
-    background-color: rgba(255, 255, 255, 0.6);
-    backdrop-filter: blur(4px);
-    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0.75rem 1.25rem; background-color: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(4px); border-bottom: 1px solid rgba(0, 0, 0, 0.05);
   }
-
-  .click-ad-runner-header-text {
-    font-size: 0.875rem;
-    color: #475569;
-    font-weight: 600;
-    cursor: pointer;
-  }
-
-  .click-ad-runner-header-actions {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-  }
-
+  .click-ad-runner-header-text { font-size: 0.875rem; color: #475569; font-weight: 600; cursor: pointer; }
+  .click-ad-runner-header-actions { display: flex; align-items: center; gap: 0.75rem; }
   .click-ad-runner-countdown {
-    padding-left: 0.75rem;
-    padding-right: 0.75rem;
-    padding-top: 0.25rem;
-    padding-bottom: 0.25rem;
-    border-radius: 9999px;
-    background-color: #fef3c7;
-    color: #92400e;
-    font-size: 0.875rem;
-    font-weight: 500;
-    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    padding: 0.25rem 0.75rem; border-radius: 9999px; background-color: #fef3c7;
+    color: #92400e; font-size: 0.875rem; font-weight: 500;
   }
-
   .click-ad-runner-close-button {
-    padding-left: 0.75rem;
-    padding-right: 0.75rem;
-    padding-top: 0.5rem;
-    padding-bottom: 0.5rem;
-    border-radius: 0.375rem;
-    border: none;
-    outline: none;
-    cursor: pointer;
-    font-weight: 500;
-    transition: background-color 0.2s, color 0.2s;
+    padding: 0.5rem 0.75rem; border-radius: 0.375rem; border: none; outline: none; cursor: pointer; font-weight: 500;
   }
-
-  .click-ad-runner-close-button:not(:disabled) {
-    background-color: #e5e7eb;
-    color: #1f2937;
-  }
-
-  .click-ad-runner-close-button:not(:disabled):hover {
-    background-color: #d1d5db;
-  }
-
-  .click-ad-runner-close-button:disabled {
-    background-color: #f3f4f6;
-    color: #9ca3af;
-    cursor: not-allowed;
-  }
-
-  .click-ad-runner-content {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-    background-color: black;
-  }
-
-  .click-ad-runner-content-mobile {
-    height: 60vh;
-  }
-
-  .click-ad-runner-content-tablet {
-    height: 75vh;
-  }
-
-  .click-ad-runner-content-laptop {
-    height: 85vh;
-  }
-
-  .click-ad-runner-content-desktop {
-    height: 88vh;
-  }
-
-  .click-ad-runner-clickable-overlay {
-    height: 90%;
-    width: 100%;
-    position: absolute;
-    bottom: 0.625rem;
-    cursor: pointer;
-  }
-
-  .click-ad-runner-image {
-    max-width: 100%;
-    max-height: 100%;
-    object-fit: contain;
-  }
-
-  .click-ad-runner-iframe {
-    width: 100%;
-    height: 100%;
-    border: none;
-  }
-
-  @media (min-width: 768px) {
-    .click-ad-runner-content {
-      height: 75vh;
-    }
-  }
-
-  @media (min-width: 1024px) {
-    .click-ad-runner-content {
-      height: 85vh;
-    }
-  }
-
-  @media (min-width: 1280px) {
-    .click-ad-runner-content {
-      height: 88vh;
-    }
-  }
+  .click-ad-runner-close-button:not(:disabled) { background-color: #e5e7eb; color: #1f2937; }
+  .click-ad-runner-close-button:not(:disabled):hover { background-color: #d1d5db; }
+  .click-ad-runner-close-button:disabled { background-color: #f3f4f6; color: #9ca3af; cursor: not-allowed; }
+  .click-ad-runner-content { width: 100%; display: flex; align-items: center; justify-content: center; overflow: hidden; background-color: black; }
+  .click-ad-runner-clickable-overlay { height: 90%; width: 100%; position: absolute; bottom: 0.625rem; cursor: pointer; z-index: 1; }
+  .click-ad-runner-image { max-width: 100%; max-height: 100%; object-fit: contain; position: relative; z-index: 0; }
+  .click-ad-runner-iframe { width: 100%; height: 100%; border: none; position: relative; z-index: 0; }
+  @media (min-width: 768px) { .click-ad-runner-content { height: 75vh; } }
+  @media (min-width: 1024px) { .click-ad-runner-content { height: 85vh; } }
+  @media (min-width: 1280px) { .click-ad-runner-content { height: 88vh; } }
 `;
 function ClickAdRunner({ text, Code, skipTime }) {
   const [open, setOpen] = useState2(false);
   const [enabled, setEnabled] = useState2(false);
-  const enableTimerRef = useRef2(null);
-  const [showOverlay, setShowOverlay] = useState2(false);
   const [counting, setCounting] = useState2(true);
-  const [countdown, setCountdown] = useState2("");
+  const [countdown, setCountdown] = useState2(skipTime);
   const [adlink, setAdlink] = useState2("");
   const [targetlink, setTargetlink] = useState2("");
   const [fetched, setFetched] = useState2(false);
-  const inactivityTimerRef = useRef2(null);
-  const inactivity_time = 5e3;
-  const skiptime = skipTime;
-  let skiptimetemp = skiptime;
-  const startSkipCountdown = () => {
+  useEffect2(() => {
+    if (!open) return;
     setCounting(true);
-    if (!showOverlay) setShowOverlay(true);
-    for (let index = skiptime; index >= 0; index--) {
-      setTimeout(() => {
-        console.log("timeout:", index);
+    setCountdown(skipTime);
+    const timers = [];
+    for (let index = skipTime; index >= 0; index--) {
+      const timer = setTimeout(() => {
         setCountdown(index);
-        if (index == 0) {
+        if (index === 0) {
           setCounting(false);
+          setEnabled(true);
         }
-      }, (skiptimetemp - index) * 1e3);
+      }, (skipTime - index) * 1e3);
+      timers.push(timer);
     }
-  };
-  const resetInactivityTimer = () => {
-    if (inactivityTimerRef.current) clearTimeout(inactivityTimerRef.current);
-    inactivityTimerRef.current = setTimeout(() => startSkipCountdown(), inactivity_time);
-  };
+    return () => timers.forEach(clearTimeout);
+  }, [open, skipTime]);
   useEffect2(() => {
-    if (showOverlay) {
-      if (inactivityTimerRef.current) clearTimeout(inactivityTimerRef.current);
-      return;
-    }
-    const events = ["mousemove", "mousedown", "keydown", "touchstart", "touchmove", "scroll", "wheel"];
-    events.forEach((ev) => window.addEventListener(ev, resetInactivityTimer));
-    resetInactivityTimer();
-    return () => {
-      if (inactivityTimerRef.current) clearTimeout(inactivityTimerRef.current);
-      events.forEach((ev) => window.removeEventListener(ev, resetInactivityTimer));
-    };
-  }, [showOverlay]);
-  useEffect2(() => {
-    if (!showOverlay || fetched) return;
-    const controller = new AbortController();
+    if (!open || fetched) return;
     (async () => {
       try {
-        const res = await axios_default.get(`https://ad-services.vercel.app/api/ad/fetch-ad?url=https://jsonplaceholder.typicode.com/posts&apiKey=${Code}&limit=1`);
-        console.log(res);
+        const res = await axios_default.get(
+          `https://ad-services.vercel.app/api/ad/fetch-ad?url=https://jsonplaceholder.typicode.com/posts&apiKey=${Code}&limit=1`
+        );
         setAdlink(res.data?.ad_link);
         setTargetlink(res.data?.target_link);
-        console.log(targetlink);
         setFetched(true);
       } catch (err) {
         if (!axios_default.isCancel(err)) console.error(err?.response?.status, err?.response?.data);
       }
     })();
-    return () => controller.abort();
-  }, [showOverlay, fetched]);
+  }, [open, fetched, Code]);
   const sendClickAndRedirect = () => {
     try {
       axios_default.get("https://ad-services.vercel.app/api/ad/clicks-advertiser");
@@ -3602,30 +3433,16 @@ function ClickAdRunner({ text, Code, skipTime }) {
       window.location.href = targetlink;
     }
   };
-  const handleBackdropClick = (e) => {
-    if (e.target === e.currentTarget) {
-      sendClickAndRedirect();
-    }
-  };
   const handleOpenClick = () => {
     setOpen(true);
     setEnabled(false);
-    if (enableTimerRef.current) clearTimeout(enableTimerRef.current);
-    enableTimerRef.current = setTimeout(() => setEnabled(true), 6e3);
-    setShowOverlay(true);
     setFetched(false);
-    setCounting(true);
-    setCountdown("");
   };
   const handleClose = (e) => {
     if (e && e.stopPropagation) e.stopPropagation();
     setOpen(false);
     setEnabled(false);
-    setShowOverlay(false);
-    setCounting(true);
-    setCountdown("");
-    if (enableTimerRef.current) clearTimeout(enableTimerRef.current);
-    if (inactivityTimerRef.current) clearTimeout(inactivityTimerRef.current);
+    setFetched(false);
   };
   useEffect2(() => {
     const onKey = (e) => {
@@ -3634,16 +3451,193 @@ function ClickAdRunner({ text, Code, skipTime }) {
     if (open) window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
   }, [open]);
-  useEffect2(() => () => {
-    if (enableTimerRef.current) clearTimeout(enableTimerRef.current);
-    if (inactivityTimerRef.current) clearTimeout(inactivityTimerRef.current);
-  }, []);
-  return /* @__PURE__ */ React.createElement(React.Fragment, null, /* @__PURE__ */ React.createElement("style", null, styles), /* @__PURE__ */ React.createElement("span", { onClick: handleOpenClick, className: "click-ad-runner-trigger" }, text), open && /* @__PURE__ */ React.createElement("div", { className: "click-ad-runner-backdrop", onClick: handleBackdropClick }, /* @__PURE__ */ React.createElement("div", { className: "click-ad-runner-modal", onClick: (e) => e.stopPropagation() }, /* @__PURE__ */ React.createElement("div", { className: "click-ad-runner-header" }, /* @__PURE__ */ React.createElement("div", { className: "click-ad-runner-header-text", onClick: sendClickAndRedirect }, "Ad run by Dwarkesh & team"), /* @__PURE__ */ React.createElement("div", { className: "click-ad-runner-header-actions" }, counting && /* @__PURE__ */ React.createElement("div", { className: "click-ad-runner-countdown" }, countdown), /* @__PURE__ */ React.createElement("button", { type: "button", onClick: handleClose, disabled: !enabled, className: "click-ad-runner-close-button" }, enabled ? "Close" : `Wait ${countdown}s`))), /* @__PURE__ */ React.createElement("div", { className: "click-ad-runner-content click-ad-runner-content-mobile" }, /* @__PURE__ */ React.createElement("div", { className: "click-ad-runner-clickable-overlay", onClick: sendClickAndRedirect }), /\.(jpe?g|png|gif|webp|avif|svg)$/i.test(adlink) ? /* @__PURE__ */ React.createElement("img", { src: adlink, alt: "Ad", className: "click-ad-runner-image", draggable: false }) : /* @__PURE__ */ React.createElement("iframe", { className: "click-ad-runner-iframe", src: adlink, title: "Ad", allow: "autoplay; fullscreen" })))));
+  return /* @__PURE__ */ React2.createElement(React2.Fragment, null, /* @__PURE__ */ React2.createElement("style", null, styles), /* @__PURE__ */ React2.createElement("span", { onClick: handleOpenClick, className: "click-ad-runner-trigger" }, text), open && /* @__PURE__ */ React2.createElement("div", { className: "click-ad-runner-backdrop", onClick: (e) => {
+    if (e.target === e.currentTarget) sendClickAndRedirect();
+  } }, /* @__PURE__ */ React2.createElement("div", { className: "click-ad-runner-modal", onClick: (e) => e.stopPropagation() }, /* @__PURE__ */ React2.createElement("div", { className: "click-ad-runner-header" }, /* @__PURE__ */ React2.createElement("div", { className: "click-ad-runner-header-text", onClick: sendClickAndRedirect }, "Ad run by Dwarkesh & team"), /* @__PURE__ */ React2.createElement("div", { className: "click-ad-runner-header-actions" }, /* @__PURE__ */ React2.createElement(
+    "button",
+    {
+      type: "button",
+      onClick: handleClose,
+      disabled: !enabled,
+      className: "click-ad-runner-countdown"
+    },
+    enabled ? `X` : `${countdown}`
+  ))), /* @__PURE__ */ React2.createElement("div", { className: "click-ad-runner-content click-ad-runner-content-mobile" }, /* @__PURE__ */ React2.createElement("div", { className: "click-ad-runner-clickable-overlay", onClick: sendClickAndRedirect }), /\.(jpe?g|png|gif|webp|avif|svg)$/i.test(adlink) ? /* @__PURE__ */ React2.createElement("img", { src: adlink, alt: "Ad", className: "click-ad-runner-image", draggable: false }) : /* @__PURE__ */ React2.createElement("iframe", { className: "click-ad-runner-iframe", src: adlink, title: "Ad", allow: "autoplay; fullscreen" })))));
 }
 
-// src/index.jsx
-var index_default = AutoAdRunner;
+// src/Ad_flotinjg_bar_componenr.jsx
+import React3, { useEffect as useEffect3, useState as useState3 } from "react";
+function AutoFloatingBan({ code, skipTime }) {
+  const [show, setShow] = useState3(false);
+  const [restartKey, setRestartKey] = useState3(0);
+  window.onload = () => {
+    setShow(true);
+  };
+  useEffect3(() => {
+    const timer = setTimeout(() => setShow(true), skipTime);
+    setRestartKey(0);
+    return () => clearTimeout(timer);
+  }, [skipTime, restartKey]);
+  const activeagain = () => {
+    setShow(false);
+    setRestartKey(1);
+  };
+  const styles3 = {
+    adBar: {
+      position: "fixed",
+      left: "50%",
+      bottom: "16px",
+      transform: show ? "translateX(-50%) translateY(0)" : "translateX(-50%) translateY(120%)",
+      width: "min(92vw, 760px)",
+      background: "rgba(20, 20, 28, 0.95)",
+      color: "#fff",
+      borderRadius: "14px",
+      boxShadow: "0 10px 30px rgba(0, 0, 0, 0.25)",
+      padding: "12px 14px",
+      display: "flex",
+      alignItems: "center",
+      gap: "12px",
+      zIndex: 9999,
+      opacity: show ? 1 : 0,
+      transition: "transform 0.35s ease, opacity 0.35s ease",
+      backdropFilter: "blur(8px)",
+      flexWrap: "wrap"
+    },
+    adBadge: {
+      background: "#7c3aed",
+      padding: "6px 10px",
+      borderRadius: "999px",
+      fontSize: "12px",
+      fontWeight: 700,
+      whiteSpace: "nowrap"
+    },
+    adText: {
+      flex: 1,
+      minWidth: 0,
+      fontSize: "14px"
+    },
+    adTextStrong: {
+      display: "block",
+      marginBottom: "2px"
+    },
+    adTextSpan: {
+      color: "rgba(255,255,255,0.75)",
+      fontSize: "13px"
+    },
+    adCta: {
+      background: "#22c55e",
+      color: "#04130a",
+      textDecoration: "none",
+      fontWeight: 700,
+      padding: "9px 14px",
+      borderRadius: "10px",
+      whiteSpace: "nowrap"
+    },
+    adClose: {
+      background: "transparent",
+      border: 0,
+      color: "#fff",
+      fontSize: "20px",
+      cursor: "pointer",
+      opacity: 0.7
+    },
+    main: {
+      padding: "40px 24px"
+    },
+    ctaMobile: {
+      width: "100%",
+      textAlign: "center"
+    }
+  };
+  return /* @__PURE__ */ React3.createElement(React3.Fragment, null, show && /* @__PURE__ */ React3.createElement("div", { style: styles3.adBar }, /* @__PURE__ */ React3.createElement("div", { style: styles3.adBadge }, "Sponsored"), /* @__PURE__ */ React3.createElement("div", { style: styles3.adText }, /* @__PURE__ */ React3.createElement("strong", { style: styles3.adTextStrong }, "Try our premium plan"), /* @__PURE__ */ React3.createElement("span", { style: styles3.adTextSpan }, "Faster setup, better tools, and no interruptions.")), /* @__PURE__ */ React3.createElement("a", { href: "#", style: styles3.adCta }, "Learn More"), /* @__PURE__ */ React3.createElement(
+    "button",
+    {
+      type: "button",
+      style: styles3.adClose,
+      "aria-label": "Close ad",
+      onClick: () => activeagain()
+    },
+    "\xD7"
+  )), /* @__PURE__ */ React3.createElement("main", { style: styles3.main }, /* @__PURE__ */ React3.createElement("h1", null, "Website Content"), /* @__PURE__ */ React3.createElement("p", null, "Scroll or wait a short delay to show the floating bar.")));
+}
+
+// src/Ad_Sticky_ban_component.jsx
+import React4, { useEffect as useEffect4, useState as useState4 } from "react";
+function AutoStickyban({ Code, Timer, stickon }) {
+  const [Show, setShow] = useState4(true);
+  const [restartKey, setRestartKey] = useState4(0);
+  window.onload = () => {
+    setShow(true);
+  };
+  useEffect4(() => {
+    const timer = setTimeout(() => setShow(true), Timer);
+    setRestartKey(0);
+    return () => clearTimeout(timer);
+  }, [Timer, restartKey]);
+  const activeagain = () => {
+    setShow(false);
+    setRestartKey(1);
+  };
+  return /* @__PURE__ */ React4.createElement("div", { style: styles2.page }, Show && /* @__PURE__ */ React4.createElement("div", { style: styles2.banner }, /* @__PURE__ */ React4.createElement("div", { style: styles2.label }, "Sponsored"), /* @__PURE__ */ React4.createElement("div", { style: styles2.message }, "Unlock premium features and improve your workflow today."), /* @__PURE__ */ React4.createElement("a", { href: "#", style: styles2.cta }, "Learn More"), /* @__PURE__ */ React4.createElement("button", { style: styles2.close, onClick: () => activeagain() }, "\xD7")));
+}
+var styles2 = {
+  page: {
+    minHeigh: "200vh",
+    background: "#f4f7fb",
+    fontFamily: "Arial, sans-serif"
+  },
+  banner: {
+    position: "sticky",
+    top: 0,
+    zIndex: 1e3,
+    width: "100%",
+    background: "#111827",
+    color: "#fff",
+    padding: "14px 20px",
+    display: "flex",
+    alignItems: "center",
+    gap: "14px",
+    boxSizing: "border-box",
+    boxShadow: "0 4px 16px rgba(0,0,0,0.15)"
+  },
+  label: {
+    background: "#f59e0b",
+    color: "#111827",
+    fontSize: "12px",
+    fontWeight: 700,
+    padding: "5px 10px",
+    borderRadius: "999px",
+    whiteSpace: "nowrap"
+  },
+  message: {
+    flex: 1,
+    fontSize: "14px"
+  },
+  cta: {
+    background: "#22c55e",
+    color: "#04130a",
+    textDecoration: "none",
+    fontWeight: 700,
+    padding: "8px 14px",
+    borderRadius: "10px",
+    whiteSpace: "nowrap"
+  },
+  close: {
+    border: 0,
+    background: "transparent",
+    color: "#fff",
+    fontSize: "22px",
+    cursor: "pointer",
+    lineHeight: 1,
+    opacity: 0.8
+  },
+  content: {
+    padding: "24px"
+  }
+};
 export {
-  ClickAdRunner as AdClick,
-  index_default as default
+  AutoFloatingBan,
+  AutoStickyban,
+  ClickAdRunner,
+  AutoAdRunner as default
 };
